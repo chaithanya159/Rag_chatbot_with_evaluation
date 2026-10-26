@@ -1,0 +1,319 @@
+[
+  {
+    "id": "H1",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "factual",
+    "question": "What does NIST mean by \"validation\" for an AI system?",
+    "reference_answer": "Validation is confirmation, through objective evidence, that the requirements for a specific intended use or application have been fulfilled.",
+    "answer": "According to the document, NIST defines validation as the \"confirmation, through the provision of objective evidence, that the requirements for a specific intended use or application have been fulfilled\" (Source: ISO 9000:2015). This is found on page 11 of the context provided. The document notes that validation is a part of being \"Valid and Reliable,\" which contributes to the overall trustworthiness of an AI system.",
+    "expected_pages": [
+      11
+    ],
+    "retrieved_pages": [
+      1,
+      2,
+      11,
+      12,
+      17
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.627,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "objective evidence",
+      "intended use"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately quotes the definition of validation from the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer accurately restates the reference definition of validation without contradiction",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H2",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "factual",
+    "question": "How does the document define accuracy, and what should accuracy measurements be paired with?",
+    "reference_answer": "Accuracy is the closeness of observations, computations, or estimates to true or accepted values. Measurements should be paired with clearly defined, realistic test sets representative of expected-use conditions and with details of the test methodology.",
+    "answer": "Based on the document, accuracy is defined as the \"closeness of results of observations, computations, or estimates to the true values or the values accepted as being true,\" according to ISO /IEC TS 5723:2022 (Source 1, page 12). Accuracy measurements should always be paired with clearly defined and realistic test sets that are representative of conditions of expected use, as well as details about test methodology included in associated documentation (Source 1, page 12).",
+    "expected_pages": [
+      12
+    ],
+    "retrieved_pages": [
+      10,
+      11,
+      12,
+      16
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.486,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "closeness",
+      "true values",
+      "realistic test sets",
+      "test methodology"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly cites the definition of accuracy and the required pairing with test sets as described in the context.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer restates the definition of accuracy and correctly notes that measurements should be paired with realistic test sets and methodology details, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H3",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "factual",
+    "question": "What does the AI RMF say makes an AI system \"safe\"?",
+    "reference_answer": "An AI system should not, under defined conditions, lead to a state in which human life, health, property, or the environment is endangered.",
+    "answer": "Based on the provided document, the AI RMF describes AI safety risk management approaches on page 13 (Source 3). The document states that employing safety considerations during the lifecycle, starting early in planning and design, can prevent failures or conditions that render a system dangerous. It identifies the following practical approaches for AI safety:\n\n1. Rigorous simulation and in-domain testing\n2. Real-time monitoring\n3. The ability to shut down, modify, or have human intervention into systems that deviate from intended or expected functionality\n\nAdditionally, the AI RMF notes that aligning these approaches with existing sector- or application-specific guidelines or standards, such as those in transportation and healthcare, supports safety efforts. While the document mentions \"safe\" as a defining goal of trustworthy AI on page 3 (Source 4), the specific operational details for achieving safety are detailed on page 13.",
+    "expected_pages": [
+      12
+    ],
+    "retrieved_pages": [
+      1,
+      3,
+      4,
+      8,
+      13
+    ],
+    "page_hit": 0.0,
+    "abstained": null,
+    "top_retrieval_score": 0.724,
+    "keyword_coverage": 0.0,
+    "keywords_found": [],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer lists safety approaches directly mentioned in the context and directly addresses the question about what makes an AI system safe.",
+    "correctness": 0.0,
+    "correctness_reasoning": "The answer does not convey the reference definition of safety and provides unrelated details",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H4",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "factual",
+    "question": "What is meant by \"inscrutability\" as a challenge to measuring AI risk?",
+    "reference_answer": "Inscrutability can complicate risk measurement and may result from limited explainability or interpretability, lack of transparency or documentation, or inherent uncertainty in AI systems.",
+    "answer": "1. Definition: Inscrutability refers to AI systems that complicate risk measurement.\n2. Causes: It can result from the opaque nature of AI systems (such as limited explainability or interpretability), a lack of transparency or documentation in AI system development or deployment, or inherent uncertainties in AI systems.\n3. Impact: This challenge makes it difficult to assess risks, particularly when risks in real-world operational settings may differ from those measured in controlled environments.",
+    "expected_pages": [
+      6
+    ],
+    "retrieved_pages": [
+      4,
+      5,
+      6,
+      12
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.694,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "inscrutab",
+      "opaque",
+      "transparency or documentation",
+      "uncertainties"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately reflects the context definition, causes, and impact of inscrutability and directly answers the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer accurately restates the definition, causes, and impact of inscrutability as described in the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H5",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "factual",
+    "question": "What does the framework mean by external validity when discussing AI accuracy?",
+    "reference_answer": "The document says accuracy measures should demonstrate external validity, meaning generalizability beyond the training conditions.",
+    "answer": "According to the document, external validity in the context of AI accuracy is defined as generalizability beyond the training conditions. It is listed as a consideration for measures of accuracy alongside computational-centric measures (such as false positive and false negative rates) and human-AI teaming. This information is found on page 12 of the provided context.",
+    "expected_pages": [
+      12
+    ],
+    "retrieved_pages": [
+      2,
+      10,
+      11,
+      12
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.621,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "external validity",
+      "generalizable",
+      "training conditions"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly restates the definition of external validity from the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly restates that external validity means generalizability beyond training conditions and adds no contradictory information.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H6",
+    "set": "holdout",
+    "overlap": "partial",
+    "type": "factual",
+    "question": "Why might measuring risk at different points in an AI system's lifecycle produce different results?",
+    "reference_answer": "Some risks may be latent at one point and increase as AI systems adapt and evolve. Different AI actors across the lifecycle may also have different perspectives on risk.",
+    "answer": "1. Latent risks: Some risks may not be visible at a given point in time and can increase as AI systems adapt and evolve.\n2. Evolving context: The environment and usage scenarios may change as the system moves through development, deployment, and operation.\n3. Inconsistent perspectives: Different AI actors at various lifecycle stages (such as developers versus deployers) hold different risk perspectives and may not recognize how specific uses entail risks that differ from initial perceptions (page 6).",
+    "expected_pages": [
+      6
+    ],
+    "retrieved_pages": [
+      4,
+      5,
+      6
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.601,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "latent",
+      "earlier stage",
+      "risk perspectives"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer restates points directly supported by the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer includes all key points from the reference and adds compatible detail without contradiction.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H7",
+    "set": "holdout",
+    "overlap": "partial",
+    "type": "factual",
+    "question": "What kinds of bias can arise from non-representative samples, according to the document?",
+    "reference_answer": "Computational and statistical biases can occur in AI datasets and algorithmic processes, and often stem from systematic errors due to non-representative samples.",
+    "answer": "According to the document, computational and statistical biases can arise from non-representative samples. These biases often stem from systematic errors and can be present in AI datasets and algorithmic processes (page 16).\n\n1. Computational and statistical biases: These are present in AI datasets and algorithmic processes and usually result from systematic errors caused by non-representative samples.",
+    "expected_pages": [
+      16
+    ],
+    "retrieved_pages": [
+      6,
+      9,
+      15,
+      16
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.459,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "non-representative samples",
+      "computational and statistical"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly cites computational and statistical biases as arising from non-representative samples, directly addressing the question and staying within the provided context.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states computational and statistical biases arise from non-representative samples, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H8",
+    "set": "holdout",
+    "overlap": "regression",
+    "type": "multi-part",
+    "question": "What does the MAP function help AI actors understand, and why can this be difficult?",
+    "reference_answer": "MAP establishes the context for framing AI system risks. Anticipating impacts can be difficult because lifecycle activities are interdependent and actors may not have full visibility or control over other parts of the process.",
+    "answer": "The MAP function establishes the context to frame risks related to an AI system. This can be difficult because, in practice, AI actors in charge of one part of the process often do not have full visibility or control over other parts and their associated contexts. Additionally, the interdependencies between interdependent activities involving a diverse set of actors make it challenging to reliably anticipate the impacts of AI systems (Source 1, page 22).",
+    "expected_pages": [
+      22
+    ],
+    "retrieved_pages": [
+      18,
+      19,
+      21,
+      22
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.648,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "establishes the context",
+      "frame risks",
+      "visibility"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately reflects the context and directly answers the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer restates both key points from the reference without contradiction",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H9",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "unanswerable",
+    "question": "What is the exact minimum percentage of model accuracy required for an AI system to be considered trustworthy under the AI RMF?",
+    "reference_answer": "The PDF does not specify a universal minimum accuracy percentage for trustworthiness. It says accuracy measures should use realistic test sets and that trustworthiness depends on balancing multiple characteristics.",
+    "answer": "The document does not contain that information. While the provided text defines accuracy as the \"closeness of results of observations, computations, or estimates to the true values\" and states that human judgment should be employed when deciding on specific metrics and threshold values, it does not specify an exact minimum percentage of model accuracy required for an AI system to be considered trustworthy.",
+    "expected_pages": [],
+    "retrieved_pages": [
+      2,
+      10,
+      11,
+      12,
+      17
+    ],
+    "page_hit": null,
+    "abstained": true,
+    "top_retrieval_score": 0.651,
+    "keyword_coverage": null,
+    "keywords_found": [],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly states that the context does not provide a specific percentage and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states that the document does not provide a specific minimum accuracy percentage, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "H10",
+    "set": "holdout",
+    "overlap": "new",
+    "type": "unanswerable",
+    "question": "How many independent external auditors must each organization hire annually to comply with the AI RMF?",
+    "reference_answer": "The PDF does not specify a required number of independent external auditors or an annual external-audit requirement.",
+    "answer": "The document does not contain that information. Specifically, page 2 states that the Framework is intended to be voluntary, meaning it is not a mandatory compliance requirement that would dictate hiring a specific number of external auditors. Furthermore, the provided text does not mention any requirement for organizations to hire independent external auditors.",
+    "expected_pages": [],
+    "retrieved_pages": [
+      2,
+      3,
+      9,
+      17,
+      21
+    ],
+    "page_hit": null,
+    "abstained": true,
+    "top_retrieval_score": 0.48,
+    "keyword_coverage": null,
+    "keywords_found": [],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly states that the context provides no auditor requirement, matching the source and directly responding to the query.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states that the document does not provide the required number of auditors, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  }
+]

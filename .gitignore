@@ -1,0 +1,19 @@
+# Secrets: never commit these
+.env
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Runtime data created by the app (indexed documents, chat history, uploads)
+data/
+uploads/
+
+# The test document is not included; download it from NIST (see README)
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db

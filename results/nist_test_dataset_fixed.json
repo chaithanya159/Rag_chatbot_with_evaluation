@@ -1,0 +1,202 @@
+[
+  {
+    "id": "Q1",
+    "question": "What is the main purpose of the NIST AI Risk Management Framework?",
+    "reference_answer": "The AI RMF helps organizations manage the risks of AI and promote the trustworthy and responsible development and use of AI systems.",
+    "type": "factual",
+    "printed_pages": [
+      2
+    ],
+    "physical_pages": [
+      2
+    ]
+  },
+  {
+    "id": "Q2",
+    "question": "What are the four core functions of the AI RMF?",
+    "reference_answer": "The four functions are GOVERN, MAP, MEASURE, and MANAGE.",
+    "type": "factual",
+    "printed_pages": [
+      3,
+      20
+    ],
+    "physical_pages": [
+      3,
+      18
+    ]
+  },
+  {
+    "id": "Q3",
+    "question": "How does the framework define risk?",
+    "reference_answer": "Risk is the composite measure of an event's probability of occurring and the magnitude or degree of its consequences.",
+    "type": "factual",
+    "printed_pages": [
+      4
+    ],
+    "physical_pages": [
+      4
+    ]
+  },
+  {
+    "id": "Q4",
+    "question": "What does risk tolerance mean in the AI RMF?",
+    "reference_answer": "Risk tolerance refers to an organization's or AI actor's readiness to bear risk in order to achieve its objectives.",
+    "type": "factual",
+    "printed_pages": [
+      7
+    ],
+    "physical_pages": [
+      7
+    ]
+  },
+  {
+    "id": "Q5",
+    "question": "What characteristics make an AI system trustworthy according to NIST?",
+    "reference_answer": "Trustworthy AI characteristics include validity and reliability, safety, security and resilience, accountability and transparency, explainability and interpretability, privacy enhancement, and fairness with harmful bias managed.",
+    "type": "factual",
+    "printed_pages": [
+      3,
+      12
+    ],
+    "physical_pages": [
+      3,
+      10
+    ]
+  },
+  {
+    "id": "Q6",
+    "question": "What is the difference between explainability and interpretability?",
+    "reference_answer": "Explainability refers to a representation of the mechanisms underlying AI system operation, whereas interpretability refers to the meaning of AI system output in the context of its designed functional purposes.",
+    "type": "factual",
+    "printed_pages": [
+      16
+    ],
+    "physical_pages": [
+      14
+    ]
+  },
+  {
+    "id": "Q7",
+    "question": "What are the three major categories of AI bias identified by NIST?",
+    "reference_answer": "The three categories are systemic bias, computational and statistical bias, and human-cognitive bias.",
+    "type": "factual",
+    "printed_pages": [
+      18
+    ],
+    "physical_pages": [
+      16
+    ]
+  },
+  {
+    "id": "Q8",
+    "question": "What is the purpose of the MAP function?",
+    "reference_answer": "The MAP function establishes the context to frame risks related to an AI system.",
+    "type": "factual",
+    "printed_pages": [
+      24
+    ],
+    "physical_pages": [
+      22
+    ]
+  },
+  {
+    "id": "Q9",
+    "question": "Why can AI risks be difficult to measure, and what should organizations do to address emerging risks?",
+    "reference_answer": "AI risks may be difficult to measure when failures are not well-defined or adequately understood. Organizations should identify and track emerging risks and consider techniques for measuring them.",
+    "type": "multi-part",
+    "printed_pages": [
+      5,
+      6
+    ],
+    "physical_pages": [
+      5,
+      6
+    ]
+  },
+  {
+    "id": "Q10",
+    "question": "How should organizations prioritize AI risks, and what should they do when the risks become unacceptable?",
+    "reference_answer": "Organizations should prioritize policies and resources according to the assessed risk level and potential impact of an AI system. If risks are unacceptable, development and deployment should cease safely until the risks can be sufficiently managed.",
+    "type": "multi-part",
+    "printed_pages": [
+      7,
+      8
+    ],
+    "physical_pages": [
+      7,
+      8
+    ]
+  },
+  {
+    "id": "Q11",
+    "question": "How do governance and diverse team participation contribute to AI risk management?",
+    "reference_answer": "Governance establishes organizational policies, responsibilities, and practices for managing AI risks. Diverse, multidisciplinary teams bring different experiences and expertise, helping identify problems and emerging risks throughout the AI lifecycle.",
+    "type": "multi-part",
+    "printed_pages": [
+      9,
+      20,
+      21,
+      22,
+      23
+    ],
+    "physical_pages": [
+      9,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  {
+    "id": "Q12",
+    "question": "Can an AI system be considered trustworthy just because it is accurate? Why or why not?",
+    "reference_answer": "No. Trustworthiness requires balancing multiple characteristics, and addressing these characteristics individually does not guarantee that an AI system is trustworthy.",
+    "type": "paraphrased",
+    "printed_pages": [
+      12,
+      13
+    ],
+    "physical_pages": [
+      10,
+      11
+    ]
+  },
+  {
+    "id": "Q13",
+    "question": "Why might an AI system perform well during laboratory testing but create problems after deployment?",
+    "reference_answer": "Measurements in a laboratory or controlled environment may differ from risks that emerge in operational, real-world settings. Some risks may also be latent early on and increase as AI systems adapt and evolve.",
+    "type": "paraphrased",
+    "printed_pages": [
+      6
+    ],
+    "physical_pages": [
+      6
+    ]
+  },
+  {
+    "id": "Q14",
+    "question": "What exact monetary fine does NIST prescribe for organizations that fail to follow the AI RMF?",
+    "reference_answer": "The document does not specify a monetary fine for failing to follow the AI RMF. The framework is described as voluntary.",
+    "type": "unanswerable",
+    "printed_pages": [
+      2
+    ],
+    "physical_pages": [
+      2
+    ]
+  },
+  {
+    "id": "Q15",
+    "question": "What is the mandatory deadline for every organization to complete implementation of the AI RMF?",
+    "reference_answer": "I couldn't find a mandatory implementation deadline in the document. The AI RMF is voluntary, and organizations can apply its approaches according to their needs and capabilities.",
+    "type": "unanswerable",
+    "printed_pages": [
+      2,
+      21
+    ],
+    "physical_pages": [
+      2,
+      19
+    ]
+  }
+]

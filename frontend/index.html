@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marginalia — ask your document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1B2A4A;
+    --ink-soft: #5B6472;
+    --paper: #EEF1F4;
+    --card: #FFFFFF;
+    --border: #D7DBE0;
+    --amber: #E8A33D;
+    --amber-deep: #C7842A;
+    --amber-pale: #FBEBD2;
+    --teal: #2F7A6C;
+    --teal-pale: #DCEEE9;
+    --danger: #C0533E;
+    --danger-pale: #F6E3DE;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(27,42,74,0.06), 0 6px 20px rgba(27,42,74,0.05);
+  }
+
+  * { box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(27,42,74,0.05) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ============ LEFT: THE DESK ============ */
+
+  .desk {
+    width: 360px;
+    flex-shrink: 0;
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    animation: rise-in 0.5s ease both;
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .seal {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .seal::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px dashed var(--ink);
+    border-radius: 50%;
+    opacity: 0.4;
+  }
+  .seal svg { width: 18px; height: 18px; }
+
+  .brand h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .brand p {
+    margin: 2px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .tagline {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    border-left: 2px solid var(--amber);
+    padding-left: 12px;
+  }
+
+  .dropzone {
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: 22px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    display: block;
+  }
+  .dropzone:hover, .dropzone.drag-over {
+    border-color: var(--amber);
+    background: var(--amber-pale);
+  }
+  .dropzone svg { width: 26px; height: 26px; color: var(--ink-soft); margin-bottom: 8px; }
+  .dropzone .primary { font-size: 13.5px; font-weight: 600; margin-bottom: 2px; }
+  .dropzone .secondary { font-size: 11.5px; color: var(--ink-soft); }
+  .dropzone input { display: none; }
+
+  .file-chip {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-top: 8px;
+    word-break: break-all;
+  }
+  .file-chip.visible { display: flex; }
+  .file-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  button.load-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.15s ease;
+  }
+  button.load-btn:hover:not(:disabled) { background: #263a63; }
+  button.load-btn:active:not(:disabled) { transform: scale(0.98); }
+  button.load-btn:disabled { background: #B9BFC8; cursor: not-allowed; }
+
+  .index-card {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    position: relative;
+    animation: rise-in 0.4s ease both;
+  }
+  .index-card.visible { display: block; }
+  .index-card .stamp {
+    position: absolute;
+    top: 12px; right: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+    border-radius: 50%;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    transform: rotate(8deg);
+    line-height: 1.1;
+  }
+  .index-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 6px 4px 0;
+    max-width: 190px;
+    word-break: break-word;
+  }
+  .index-card .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .index-card .clear-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    cursor: pointer;
+    background: none; border: none; padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  .index-card .clear-link:hover { color: var(--danger); text-decoration-color: var(--danger); }
+
+  details.settings { font-size: 12.5px; }
+  details.settings summary {
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  details.settings summary::-webkit-details-marker { display: none; }
+  details.settings summary::before { content: '▸'; font-size: 10px; transition: transform 0.15s; }
+  details.settings[open] summary::before { transform: rotate(90deg); }
+  .setting-row { margin-top: 12px; }
+  .setting-row label { display: flex; justify-content: space-between; margin-bottom: 4px; color: var(--ink-soft); }
+  .setting-row output { font-family: 'JetBrains Mono', monospace; color: var(--ink); }
+  .setting-row input[type="range"] { width: 100%; accent-color: var(--amber-deep); }
+
+  .status-line { display: none; font-size: 12px; padding: 9px 12px; border-radius: 8px; line-height: 1.4; }
+  .status-line.visible { display: block; }
+  .status-line.info { background: var(--teal-pale); color: var(--teal); }
+  .status-line.error { background: var(--danger-pale); color: var(--danger); }
+
+
+  /* ============ RIGHT: THE NOTEBOOK ============ */
+
+  .notebook { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  .notebook-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: rise-in 0.5s ease 0.05s both;
+  }
+  .notebook-header h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 17px; margin: 0; }
+  .status-pill { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; color: var(--ink-soft); }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #B9BFC8; }
+  .status-dot.ready { background: var(--teal); }
+  .status-dot.thinking { background: var(--amber); animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  .messages { flex: 1; overflow-y: auto; padding: 28px 32px; display: flex; flex-direction: column; gap: 18px; }
+
+  .empty-state { margin: auto; text-align: center; max-width: 320px; color: var(--ink-soft); }
+  .empty-state svg { width: 56px; height: 56px; margin-bottom: 14px; opacity: 0.5; }
+  .empty-state p { font-size: 13.5px; line-height: 1.6; margin: 0; }
+  .empty-state .accent { font-family: 'Fraunces', serif; font-style: italic; color: var(--ink); }
+
+  .row { display: flex; max-width: 720px; margin: 0 auto; width: 100%; }
+  .row.user { justify-content: flex-end; }
+  .row.bot { justify-content: flex-start; }
+
+  .sticky {
+    background: var(--amber-pale);
+    border: 1px solid #EBD3A3;
+    border-radius: 10px 10px 2px 10px;
+    padding: 10px 14px;
+    max-width: 75%;
+    font-size: 14px;
+    line-height: 1.5;
+    transform: rotate(-0.4deg);
+    box-shadow: 1px 2px 4px rgba(199,132,42,0.15);
+  }
+
+  .answer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px 10px 10px 2px;
+    padding: 14px 16px;
+    max-width: 82%;
+    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: var(--shadow);
+  }
+  .answer-card.thinking { color: var(--ink-soft); font-style: italic; }
+  .answer-content .answer-para:first-child::first-letter { font-family: 'Fraunces', serif; font-size: 1.7em; font-weight: 600; color: var(--amber-deep); }
+  .answer-para { margin: 0 0 10px 0; }
+  .answer-para:last-child { margin-bottom: 0; }
+  .answer-list-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .answer-list-item:last-child { margin-bottom: 0; }
+  .answer-list-item .list-num {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .answer-list-item .list-text { flex: 1; }
+
+  .tabs-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--ink-soft);
+    border-radius: 5px 5px 0 0;
+    padding: 3px 9px;
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.12s ease;
+  }
+  .tab:hover { transform: translateY(-2px); }
+  .tab.active { background: var(--amber); color: #fff; border-color: var(--amber-deep); }
+
+  .fold { max-width: 82%; overflow: hidden; max-height: 0; transition: max-height 0.25s ease; }
+  .fold.open { max-height: 400px; }
+  .fold-inner {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .fold-inner .src-meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--teal); margin-bottom: 5px; display: flex; gap: 10px; align-items: center; }
+  .score-meter { width: 46px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .score-meter span { display: block; height: 100%; background: var(--teal); }
+
+  .input-bar { padding: 18px 32px 24px; border-top: 1px solid var(--border); }
+  .input-shell {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 6px 6px 6px 18px;
+    box-shadow: var(--shadow);
+  }
+  .input-shell input { flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 14px; background: transparent; }
+  .input-shell input::placeholder { color: #A6ADB8; }
+  .send-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--amber);
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .send-btn:hover:not(:disabled) { background: var(--amber-deep); }
+  .send-btn:active:not(:disabled) { transform: scale(0.94); }
+  .send-btn:disabled { background: #D7DBE0; cursor: not-allowed; }
+  .send-btn svg { width: 15px; height: 15px; color: #fff; }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  @media (max-width: 780px) {
+    .layout { flex-direction: column; }
+    .desk { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  :focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 2px; }
+
+  /* ============ AURORA BACKGROUND ============
+     Two fixed, oversized layers of soft gradients drift slowly behind the page.
+     Colours reuse the page's teal and amber, plus mint, sky and violet.
+     Cards stay solid white so text keeps its contrast. */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    inset: -25%;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+  }
+  body::before {
+    background:
+      radial-gradient(48% 34% at 18% 22%, rgba(94, 214, 176, 0.55), transparent 72%),
+      radial-gradient(42% 30% at 68% 12%, rgba(47, 122, 108, 0.30), transparent 72%),
+      radial-gradient(40% 36% at 88% 52%, rgba(118, 176, 240, 0.50), transparent 72%);
+    animation: aurora-a 38s ease-in-out infinite alternate;
+  }
+  body::after {
+    background:
+      radial-gradient(46% 32% at 30% 82%, rgba(160, 140, 235, 0.48), transparent 72%),
+      radial-gradient(36% 28% at 62% 58%, rgba(120, 220, 205, 0.34), transparent 72%),
+      radial-gradient(26% 20% at 92% 92%, rgba(232, 163, 61, 0.30), transparent 72%);
+    animation: aurora-b 47s ease-in-out infinite alternate;
+  }
+  @keyframes aurora-a {
+    from { transform: translate3d(-4%, 3%, 0) rotate(-3deg) scale(1.02); }
+    to   { transform: translate3d(5%, -4%, 0) rotate(4deg) scale(1.14); }
+  }
+  @keyframes aurora-b {
+    from { transform: translate3d(5%, -3%, 0) rotate(3deg) scale(1.12); }
+    to   { transform: translate3d(-5%, 4%, 0) rotate(-4deg) scale(1.02); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body::before, body::after { animation: none !important; }
+  }
+
+  /* Frosted panels let the aurora show through the sidebar and the input bar */
+  .desk {
+    background: rgba(255, 255, 255, 0.34);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    backdrop-filter: blur(14px) saturate(1.1);
+    border-right-color: rgba(255, 255, 255, 0.65);
+  }
+  .notebook-header {
+    border-bottom-color: rgba(27, 42, 74, 0.08);
+  }
+  .input-bar {
+    background: rgba(255, 255, 255, 0.38);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    backdrop-filter: blur(12px) saturate(1.1);
+    border-top-color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ============ TEST RESULTS PANEL ============ */
+  .results-link {
+    align-self: flex-start;
+    font: 500 12.5px 'Inter', sans-serif;
+    color: var(--teal);
+    background: var(--teal-pale);
+    border: 1px solid rgba(47, 122, 108, 0.25);
+    border-radius: 999px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .results-link:hover { background: #CBE6DE; }
+
+  dialog.results-dialog {
+    border: none;
+    padding: 0;
+    border-radius: 16px;
+    width: min(680px, calc(100vw - 28px));
+    max-height: calc(100vh - 40px);
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 24px 70px rgba(27, 42, 74, 0.28);
+    overflow: hidden;
+  }
+  dialog.results-dialog[open] { animation: results-in 0.2s ease both; }
+  dialog.results-dialog::backdrop {
+    background: rgba(27, 42, 74, 0.38);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  @keyframes results-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.985); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .results-panel {
+    position: relative;
+    padding: 22px 32px 18px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+  }
+  .results-close {
+    position: absolute; top: 14px; right: 16px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--ink-soft);
+    font-size: 18px; line-height: 1;
+    cursor: pointer;
+  }
+  .results-close:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+  .results-panel h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin: 0 40px 8px 0;
+  }
+  .results-panel h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 16px 0 6px;
+  }
+  .results-lede { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 12px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .swatch.before, .bar-fill.before { background: #9AA5B5; }
+  .swatch.after, .bar-fill.after { background: var(--teal); }
+
+  .metric { display: grid; grid-template-columns: 190px 1fr; gap: 6px 16px; align-items: center; padding: 5px 0; border-top: 1px solid var(--border); }
+  .metric:first-of-type { border-top: none; }
+  .metric-name { font-size: 13.5px; font-weight: 500; }
+  .metric-name small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 11.5px; margin-top: 2px; }
+  .bar-line { display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 10px; }
+  .bar-line + .bar-line { margin-top: 5px; }
+  .bar-track { height: 9px; background: #E6E9EE; border-radius: 5px; overflow: hidden; }
+  .bar-fill { display: block; height: 100%; border-radius: 5px; }
+  .bar-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right; }
+
+  .fix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .fix-box { border-radius: 10px; padding: 14px 16px; font-size: 13px; line-height: 1.55; }
+  .fix-box strong { display: block; font-size: 13.5px; margin-bottom: 4px; }
+  .fix-box.before { background: var(--danger-pale); }
+  .fix-box.after { background: var(--teal-pale); }
+  .fix-q { font-family: 'Fraunces', serif; font-style: italic; font-size: 14.5px; margin: 0; }
+
+  .results-panel p.plain { margin: 0; font-size: 13.5px; line-height: 1.6; max-width: 62ch; }
+  .results-foot { margin: 14px 0 0; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; line-height: 1.55; color: var(--ink-soft); }
+
+  @media (max-width: 560px) {
+    .results-panel { padding: 24px 20px 20px; }
+    .metric { grid-template-columns: 1fr; }
+    .fix-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ LIVE CHUNK SETTINGS ============ */
+  .setting-hint { margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--ink-soft); }
+
+  .index-card .reindex {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+  }
+  .index-card .reindex.visible { display: block; }
+  .index-card .reindex p { margin: 0; font-size: 12px; line-height: 1.5; color: var(--ink-soft); }
+  .index-card .reindex button.load-btn { margin-top: 9px; }
+  .index-card .reindex button.load-btn.is-off { display: none; }
+
+  .divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 6px auto 14px;
+    max-width: 82%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .index-tag {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="desk">
+    <div class="brand">
+      <div class="seal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 4a7 7 0 100 14 7 7 0 000-14zM21 21l-4.35-4.35"/></svg>
+      </div>
+      <div>
+        <h1>Marginalia</h1>
+        <p>a reading companion</p>
+      </div>
+    </div>
+
+    <p class="tagline">Every answer traced back to the exact passage it came from — nothing invented, nothing unsourced.</p>
+
+    <div>
+      <label class="dropzone" id="dropzone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        <div class="primary">Slide in a document</div>
+        <div class="secondary">PDF, DOCX, TXT, or MD — click or drop</div>
+        <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.md">
+      </label>
+      <div class="file-chip" id="fileChip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+        <span id="fileName"></span>
+      </div>
+      <button class="load-btn" id="loadBtn" disabled>Load document</button>
+    </div>
+
+    <div class="status-line" id="statusLine"></div>
+
+    <div class="index-card" id="indexCard">
+      <div class="stamp">INDEXED</div>
+      <h3 id="docName">—</h3>
+      <div class="meta" id="docMeta">0 chunks</div>
+      <div class="meta" id="docSettings"></div>
+      <div class="reindex" id="reindexBox">
+        <p id="reindexNote"></p>
+        <button class="load-btn" id="reindexBtn" type="button">Re-index with these settings</button>
+      </div>
+      <button class="clear-link" id="clearBtn">start a new file →</button>
+    </div>
+
+    <details class="settings">
+      <summary>Adjust how it reads</summary>
+      <div class="setting-row">
+        <label>Chunk size <output id="chunkSizeOut">200</output></label>
+        <input type="range" id="chunkSize" min="100" max="600" step="50" value="200">
+      </div>
+      <div class="setting-row">
+        <label>Overlap <output id="overlapOut">50</output></label>
+        <input type="range" id="chunkOverlap" min="0" max="150" step="10" value="50">
+      </div>
+      <div class="setting-row">
+        <label>Passages retrieved <output id="topKOut">4</output></label>
+        <input type="range" id="topK" min="1" max="10" step="1" value="4">
+      </div>
+      <p class="setting-hint">Chunk size and overlap (in words) take effect when a file is loaded or re-indexed. Passages retrieved applies to your next question.</p>
+    </details>
+
+    <button class="results-link" id="resultsBtn" type="button">How it was tested</button>
+  </aside>
+
+  <main class="notebook">
+    <div class="notebook-header">
+      <h2>Ask the document</h2>
+      <div class="status-pill">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">no document loaded</span>
+      </div>
+    </div>
+
+    <div class="messages" id="messages">
+      <div class="empty-state" id="emptyState">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <p>Load a document on the left, and it'll open here —<br><span class="accent">ready to be asked about.</span></p>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <div class="input-shell">
+        <input type="text" id="questionInput" placeholder="Ask a question about the document…" disabled>
+        <button class="send-btn" id="askBtn" disabled aria-label="Send question">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+
+<dialog class="results-dialog" id="resultsDialog" aria-labelledby="resultsTitle">
+  <div class="results-panel">
+    <button class="results-close" id="resultsClose" type="button" aria-label="Close">&times;</button>
+    <h2 id="resultsTitle">Tuning how the document is split</h2>
+    <p class="results-lede" id="resultsLede"></p>
+
+    <h3>Before and after</h3>
+    <div class="legend" id="resultsLegend"></div>
+    <div id="resultsBars"></div>
+
+    <h3>A question it used to get wrong</h3>
+    <p class="fix-q" id="fixQuestion"></p>
+    <div class="fix-grid" id="fixGrid"></div>
+    <p class="plain" id="tryIt" style="margin-top:10px;font-size:12.5px"></p>
+
+    <h3>On questions it had not seen</h3>
+    <p class="plain" id="resultsHoldout"></p>
+
+    <p class="results-foot" id="resultsFoot"></p>
+  </div>
+</dialog>
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileChip = document.getElementById('fileChip');
+const fileName = document.getElementById('fileName');
+const loadBtn = document.getElementById('loadBtn');
+const statusLine = document.getElementById('statusLine');
+const indexCard = document.getElementById('indexCard');
+const docNameEl = document.getElementById('docName');
+const docMetaEl = document.getElementById('docMeta');
+const clearBtn = document.getElementById('clearBtn');
+const docSettingsEl = document.getElementById('docSettings');
+const reindexBox = document.getElementById('reindexBox');
+const reindexNote = document.getElementById('reindexNote');
+const reindexBtn = document.getElementById('reindexBtn');
+
+const chunkSize = document.getElementById('chunkSize');
+const chunkOverlap = document.getElementById('chunkOverlap');
+const topK = document.getElementById('topK');
+const chunkSizeOut = document.getElementById('chunkSizeOut');
+const overlapOut = document.getElementById('overlapOut');
+const topKOut = document.getElementById('topKOut');
+
+const statusDot = document.getElementById('statusDot');
+const statusText = document.getElementById('statusText');
+const messages = document.getElementById('messages');
+const emptyState = document.getElementById('emptyState');
+const questionInput = document.getElementById('questionInput');
+const askBtn = document.getElementById('askBtn');
+
+let hasDocument = false;
+let selectedFile = null;
+let currentIndex = null;   // chunk settings the loaded index was built with
+
+// An overlap above half the chunk size stops chunks making progress, so cap it.
+function syncOverlapMax() {
+  const max = Math.min(150, Math.floor(parseInt(chunkSize.value, 10) / 2 / 10) * 10);
+  chunkOverlap.max = max;
+  if (parseInt(chunkOverlap.value, 10) > max) chunkOverlap.value = max;
+  chunkSizeOut.textContent = chunkSize.value;
+  overlapOut.textContent = chunkOverlap.value;
+}
+
+function applySliders(settings) {
+  if (!settings) return;
+  chunkSize.value = settings.chunk_size;
+  chunkOverlap.value = settings.chunk_overlap;
+  syncOverlapMax();
+}
+
+chunkSize.addEventListener('input', () => { syncOverlapMax(); updateReindexUI(); });
+chunkOverlap.addEventListener('input', () => { overlapOut.textContent = chunkOverlap.value; updateReindexUI(); });
+topK.addEventListener('input', () => topKOut.textContent = topK.value);
+
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) { fileInput.files = e.dataTransfer.files; handleFileSelect(); }
+});
+fileInput.addEventListener('change', handleFileSelect);
+
+function handleFileSelect() {
+  const file = fileInput.files[0];
+  if (!file) return;
+  selectedFile = file;
+  fileName.textContent = file.name;
+  fileChip.classList.add('visible');
+  loadBtn.disabled = false;
+}
+
+function showStatus(text, isError = false) {
+  statusLine.textContent = text;
+  statusLine.className = 'status-line visible ' + (isError ? 'error' : 'info');
+}
+function hideStatus() { statusLine.className = 'status-line'; }
+
+function setDocState(active, name, chunks, settings) {
+  hasDocument = active;
+  questionInput.disabled = !active;
+  askBtn.disabled = !active;
+  indexCard.classList.toggle('visible', active);
+  statusDot.className = 'status-dot' + (active ? ' ready' : '');
+  statusText.textContent = active ? name : 'no document loaded';
+  if (active) {
+    docNameEl.textContent = name;
+    docMetaEl.textContent = `${chunks} chunk${chunks === 1 ? '' : 's'} indexed`;
+    currentIndex = settings || null;
+    docSettingsEl.textContent = settings
+      ? `${settings.chunk_size}-word passages, ${settings.chunk_overlap} overlap`
+      : 'chunk settings unknown (indexed earlier)';
+  } else {
+    currentIndex = null;
+    docSettingsEl.textContent = '';
+  }
+  updateReindexUI();
+}
+
+// Offer a re-index when the sliders no longer match the index that is loaded.
+function updateReindexUI() {
+  const differs = hasDocument && currentIndex && (
+    parseInt(chunkSize.value, 10) !== currentIndex.chunk_size ||
+    parseInt(chunkOverlap.value, 10) !== currentIndex.chunk_overlap);
+  reindexBox.classList.toggle('visible', !!differs);
+  if (!differs) return;
+  const asked = `${chunkSize.value}-word passages, ${chunkOverlap.value} overlap`;
+  if (selectedFile) {
+    reindexNote.textContent = `The sliders ask for ${asked}; the loaded index uses ${currentIndex.chunk_size} / ${currentIndex.chunk_overlap}. Re-index to apply them. Your chat stays.`;
+    reindexBtn.classList.remove('is-off');
+  } else {
+    reindexNote.textContent = `The sliders ask for ${asked}; the loaded index uses ${currentIndex.chunk_size} / ${currentIndex.chunk_overlap}. Choose the file again and press Load document to apply them.`;
+    reindexBtn.classList.add('is-off');
+  }
+}
+
+function addDivider(text) {
+  const el = document.createElement('div');
+  el.className = 'divider';
+  el.textContent = text;
+  messages.appendChild(el);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function addIndexTag(row, idx) {
+  if (!idx || !idx.chunk_size) return;
+  const tag = document.createElement('div');
+  tag.className = 'index-tag';
+  tag.textContent = `answered with ${idx.chunk_size}-word passages, ${idx.chunk_overlap} overlap`;
+  row.querySelector('.answer-content').insertAdjacentElement('afterend', tag);
+}
+
+async function uploadSelected(keepHistory) {
+  if (!selectedFile) return;
+
+  loadBtn.disabled = true;
+  reindexBtn.disabled = true;
+  (keepHistory ? reindexBtn : loadBtn).textContent = keepHistory ? 'Re-indexing…' : 'Reading…';
+  hideStatus();
+
+  const formData = new FormData();
+  formData.append('file', selectedFile);
+  formData.append('chunk_size', chunkSize.value);
+  formData.append('chunk_overlap', chunkOverlap.value);
+  if (keepHistory) formData.append('keep_history', '1');
+
+  try {
+    const res = await fetch('/api/upload', { method: 'POST', body: formData });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showStatus(data.error || 'Could not load that file.', true);
+    } else {
+      setDocState(true, data.filename, data.chunks_loaded, {
+        chunk_size: data.chunk_size,
+        chunk_overlap: data.chunk_overlap,
+        chunks: data.chunks_loaded,
+      });
+      emptyState.style.display = 'none';
+      if (keepHistory) {
+        addDivider(`Re-indexed: ${data.chunk_size}-word passages, ${data.chunk_overlap} overlap (${data.chunks_loaded} chunks)`);
+      } else {
+        messages.querySelectorAll('.row, .divider').forEach(el => el.remove());
+      }
+      showStatus(data.message);
+    }
+  } catch (e) {
+    showStatus('Upload failed: ' + e.message, true);
+  } finally {
+    loadBtn.disabled = !selectedFile;
+    loadBtn.textContent = 'Load document';
+    reindexBtn.disabled = false;
+    reindexBtn.textContent = 'Re-index with these settings';
+    updateReindexUI();
+  }
+}
+
+loadBtn.addEventListener('click', () => uploadSelected(false));
+reindexBtn.addEventListener('click', () => uploadSelected(true));
+
+clearBtn.addEventListener('click', async () => {
+  try {
+    const res = await fetch('/api/reset', { method: 'DELETE' });
+    const data = await res.json();
+    setDocState(false);
+    messages.querySelectorAll('.row, .divider').forEach(el => el.remove());
+    emptyState.style.display = '';
+    fileChip.classList.remove('visible');
+    loadBtn.disabled = true;
+    selectedFile = null;
+    showStatus(data.message || 'Cleared.');
+  } catch (e) {
+    showStatus('Reset failed: ' + e.message, true);
+  }
+});
+
+let tabCounter = 0;
+
+function addUserRow(text) {
+  emptyState.style.display = 'none';
+  const row = document.createElement('div');
+  row.className = 'row user';
+  row.innerHTML = `<div class="sticky"></div>`;
+  row.querySelector('.sticky').textContent = text;
+  messages.appendChild(row);
+  messages.scrollTop = messages.scrollHeight;
+  return row;
+}
+
+function renderAnswerContent(container, text) {
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  lines.forEach(line => {
+    const listMatch = line.match(/^(\d+)\.\s*(.+)$/);
+    if (listMatch) {
+      const item = document.createElement('div');
+      item.className = 'answer-list-item';
+      const badge = document.createElement('span');
+      badge.className = 'list-num';
+      badge.textContent = listMatch[1];
+      const txt = document.createElement('span');
+      txt.className = 'list-text';
+      txt.textContent = listMatch[2];
+      item.appendChild(badge);
+      item.appendChild(txt);
+      container.appendChild(item);
+    } else {
+      const p = document.createElement('p');
+      p.className = 'answer-para';
+      p.textContent = line;
+      container.appendChild(p);
+    }
+  });
+}
+
+function addBotRow(text, thinking = false) {
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  const card = document.createElement('div');
+  card.className = 'answer-card' + (thinking ? ' thinking' : '');
+  const content = document.createElement('div');
+  content.className = 'answer-content';
+  card.appendChild(content);
+  row.appendChild(card);
+  messages.appendChild(row);
+  renderAnswerContent(content, text);
+  messages.scrollTop = messages.scrollHeight;
+  return row;
+}
+
+function addSources(row, sources) {
+  if (!sources || sources.length === 0) return;
+  const card = row.querySelector('.answer-card');
+  const tabsRow = document.createElement('div');
+  tabsRow.className = 'tabs-row';
+
+  sources.forEach((s, i) => {
+    tabCounter++;
+    const tabId = 'fold-' + tabCounter;
+    const tab = document.createElement('button');
+    tab.className = 'tab';
+    tab.textContent = '№ ' + (i + 1);
+    tab.addEventListener('click', () => {
+      const fold = document.getElementById(tabId);
+      fold.classList.toggle('open');
+      tab.classList.toggle('active');
+    });
+    tabsRow.appendChild(tab);
+  });
+  card.appendChild(tabsRow);
+
+  sources.forEach((s, i) => {
+    const idx = tabCounter - sources.length + i + 1;
+    const fold = document.createElement('div');
+    fold.className = 'fold';
+    fold.id = 'fold-' + idx;
+    const pct = Math.round((s.score || 0) * 100);
+    const page = s.page ? `page ${s.page} · ` : '';
+    fold.innerHTML = `
+      <div class="fold-inner">
+        <div class="src-meta">
+          <span>${page}relevance ${pct}%</span>
+          <span class="score-meter"><span style="width:${pct}%"></span></span>
+        </div>
+        ${s.text}
+      </div>`;
+    card.appendChild(fold);
+  });
+}
+
+async function loadHistory() {
+  try {
+    const res = await fetch('/api/history');
+    const data = await res.json();
+    if (data.history && data.history.length > 0) {
+      emptyState.style.display = 'none';
+      let previous = null;
+      data.history.forEach(turn => {
+        const idx = turn.index;
+        if (previous && idx && (idx.chunk_size !== previous.chunk_size || idx.chunk_overlap !== previous.chunk_overlap)) {
+          addDivider(`Re-indexed: ${idx.chunk_size}-word passages, ${idx.chunk_overlap} overlap`);
+        }
+        addUserRow(turn.question);
+        const row = addBotRow(turn.answer);
+        addIndexTag(row, idx);
+        addSources(row, turn.sources);
+        if (idx) previous = idx;
+      });
+    }
+  } catch (e) { /* no history yet */ }
+}
+
+async function checkStatus() {
+  try {
+    const res = await fetch('/api/status');
+    const data = await res.json();
+    applySliders(data.index || data.defaults);
+    if (data.has_documents) {
+      setDocState(true, (data.index && data.index.filename) || 'Document', data.documents_loaded, data.index);
+      emptyState.style.display = 'none';
+      await loadHistory();
+    }
+  } catch (e) { /* server starting */ }
+}
+
+async function askQuestion() {
+  const question = questionInput.value.trim();
+  if (!question || !hasDocument) return;
+
+  addUserRow(question);
+  questionInput.value = '';
+  askBtn.disabled = true;
+  statusDot.classList.add('thinking');
+
+  const thinkingRow = addBotRow('reading through the document…', true);
+
+  try {
+    const res = await fetch('/api/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: question,
+        top_k: parseInt(topK.value, 10),
+      }),
+    });
+    const data = await res.json();
+    thinkingRow.remove();
+
+    if (!res.ok) {
+      addBotRow(data.error || 'Something went wrong.');
+    } else {
+      const row = addBotRow(data.answer);
+      addIndexTag(row, data.index);
+      addSources(row, data.sources);
+    }
+  } catch (e) {
+    thinkingRow.remove();
+    addBotRow('Request failed: ' + e.message);
+  } finally {
+    askBtn.disabled = false;
+    statusDot.classList.remove('thinking');
+  }
+}
+
+askBtn.addEventListener('click', askQuestion);
+questionInput.addEventListener('keydown', e => { if (e.key === 'Enter') askQuestion(); });
+
+syncOverlapMax();
+checkStatus();
+
+/* ---------------- Test results panel ----------------
+   These numbers were recorded from evaluate.py and experiment.py runs on
+   NIST AI 100-1 (15 test questions). Edit them here if you re-run the tests. */
+const TUNING_RESULTS = {
+  before: { text: '300-word passages', chunks: 39 },
+  after:  { text: '200-word passages', chunks: 65 },
+  lede: 'I tested the chatbot on 15 questions with known answers. Cutting the passages from 300 to 200 words (overlap stays at 50) made it find the right page more often and answer more correctly.',
+  metrics: [
+    { name: 'Correctness', note: 'answer matches the reference answer', before: 0.933, after: 1.0 },
+    { name: 'Page hit rate', note: 'a top passage is from the right page', before: 0.846, after: 0.923 },
+    { name: 'Answer relevancy', note: 'answer addresses the question', before: 0.945, after: 0.99 },
+    { name: 'Faithfulness', note: 'answer stays within the passages; slightly lower after the change', before: 0.997, after: 0.963 },
+  ],
+  fix: {
+    question: 'What is the purpose of the MAP function?',
+    before: 'The chatbot said the document does not cover it. The passage that defines MAP ranked below 10th in search, so it never reached the model.',
+    after:  'The passage that defines MAP ranked 1st, and the answer matched the reference.',
+  },
+  tryIt: 'Try it yourself: open \u201CAdjust how it reads\u201D, set Chunk size to 300, press Re-index, and ask this question. Then set it back to 200 and ask again.',
+  holdout: 'On 10 more questions written separately, answers matched the reference 90% of the time. It correctly said "not in the document" for both questions that cannot be answered. One miss: a question about what makes an AI system "safe", where the right passage was not retrieved.',
+  foot: 'Setup: answers written by Qwen3.8-27B and graded by a different model (gpt-oss-120b). With only 15 questions, one question moves a score by about 0.07, so treat the gains as a good sign, not proof.',
+};
+
+const resultsDialog = document.getElementById('resultsDialog');
+
+function resultsEl(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+function renderResults() {
+  const R = TUNING_RESULTS;
+  document.getElementById('resultsLede').textContent = R.lede;
+
+  const legend = document.getElementById('resultsLegend');
+  legend.replaceChildren();
+  [['before', R.before], ['after', R.after]].forEach(([kind, v]) => {
+    const item = resultsEl('span');
+    item.append(resultsEl('i', 'swatch ' + kind), document.createTextNode(
+      (kind === 'before' ? 'Before: ' : 'After: ') + v.text + ', ' + v.chunks + ' in total'));
+    legend.append(item);
+  });
+
+  const bars = document.getElementById('resultsBars');
+  bars.replaceChildren();
+  R.metrics.forEach(m => {
+    const row = resultsEl('div', 'metric');
+    const name = resultsEl('div', 'metric-name', m.name);
+    name.append(resultsEl('small', '', m.note));
+    const lines = resultsEl('div');
+    [['before', m.before], ['after', m.after]].forEach(([kind, val]) => {
+      const line = resultsEl('div', 'bar-line');
+      line.setAttribute('aria-label', (kind === 'before' ? 'Before ' : 'After ') + val.toFixed(2));
+      const track = resultsEl('span', 'bar-track');
+      const fill = resultsEl('span', 'bar-fill ' + kind);
+      fill.style.width = Math.round(val * 100) + '%';
+      track.append(fill);
+      line.append(track, resultsEl('span', 'bar-val', val.toFixed(2)));
+      lines.append(line);
+    });
+    row.append(name, lines);
+    bars.append(row);
+  });
+
+  document.getElementById('fixQuestion').textContent = '\u201C' + R.fix.question + '\u201D';
+  const grid = document.getElementById('fixGrid');
+  grid.replaceChildren();
+  [['before', 'Before', R.fix.before], ['after', 'After', R.fix.after]].forEach(([kind, title, text]) => {
+    const box = resultsEl('div', 'fix-box ' + kind);
+    box.append(resultsEl('strong', '', title), document.createTextNode(text));
+    grid.append(box);
+  });
+
+  document.getElementById('tryIt').textContent = R.tryIt;
+  document.getElementById('resultsHoldout').textContent = R.holdout;
+  document.getElementById('resultsFoot').textContent = R.foot;
+}
+
+document.getElementById('resultsBtn').addEventListener('click', () => {
+  renderResults();
+  resultsDialog.showModal();
+});
+document.getElementById('resultsClose').addEventListener('click', () => resultsDialog.close());
+resultsDialog.addEventListener('click', e => { if (e.target === resultsDialog) resultsDialog.close(); });
+</script>
+
+</body>
+</html>

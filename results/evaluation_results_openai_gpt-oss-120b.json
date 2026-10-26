@@ -1,0 +1,460 @@
+[
+  {
+    "id": "Q1",
+    "type": "factual",
+    "question": "What is the main purpose of the NIST AI Risk Management Framework?",
+    "reference_answer": "The AI RMF helps organizations manage the risks of AI and promote the trustworthy and responsible development and use of AI systems.",
+    "answer": "Based on the provided documents, the main purpose of the NIST AI Risk Management Framework (AI RMF) is to provide a set of outcomes and actions that enable organizations to manage AI risks and responsibly develop trustworthy AI systems. Specifically, the Framework:\n\n1.  Addressing Risks: Helps organizations address the risks of AI systems in practice through four specific functions: GOVERN, MAP, MEASURE, and MANAGE.\n2.  Developing Trustworthy AI: Aims to make AI systems valid, reliable, safe, secure, resilient, accountable, transparent, explainable, interpretable, privacy-enhanced, and fair with managed harmful biases.\n3.  Enabling Dialogue: Provides outcomes and actions that enable dialogue and understanding regarding the management of AI risks.",
+    "expected_pages": [
+      2
+    ],
+    "retrieved_pages": [
+      1,
+      3,
+      9,
+      18
+    ],
+    "page_hit": 0.0,
+    "abstained": null,
+    "top_retrieval_score": 0.723,
+    "keyword_coverage": 0.5,
+    "keywords_found": [
+      "trustworthy"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately reflects the purpose described in the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer accurately conveys the reference's key point that the AI RMF helps manage AI risks and promote trustworthy, responsible AI development.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q2",
+    "type": "factual",
+    "question": "What are the four core functions of the AI RMF?",
+    "reference_answer": "The four functions are GOVERN, MAP, MEASURE, and MANAGE.",
+    "answer": "The four core functions of the AI RMF are:\n\n1. GOVERN: A cross-cutting function designed to inform and be infused throughout the other three functions.\n2. MAP: A function that can be applied in AI system-specific contexts and at specific stages of the AI lifecycle.\n3. MEASURE: A function that can be applied in AI system-specific contexts and at specific stages of the AI lifecycle.\n4. MANAGE: A function that can be applied in AI system-specific contexts and at specific stages of the AI lifecycle.",
+    "expected_pages": [
+      3,
+      18
+    ],
+    "retrieved_pages": [
+      1,
+      3,
+      18,
+      19
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.776,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "govern",
+      "map",
+      "measure",
+      "manage"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly lists the four core functions as stated in the context and directly answers the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly lists GOVERN, MAP, MEASURE, and MANAGE as the four core functions, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q3",
+    "type": "factual",
+    "question": "How does the framework define risk?",
+    "reference_answer": "Risk is the composite measure of an event's probability of occurring and the magnitude or degree of its consequences.",
+    "answer": "Based on the provided document, the framework defines risk in the following ways:\n\n1. Composite Measure: Risk refers to the composite measure of an event's probability of occurring and the magnitude or degree of the consequences of the corresponding event (Source 3, page 4).\n2. Function of Impact and Likelihood: When considering the negative impact of a potential event, risk is a function of 1) the negative impact, or magnitude of harm, that would arise if the circumstance or event occurs and 2) the likelihood of occurrence (Source 3 and 2, page 4).\n3. Positive and Negative Impacts: The impacts, or consequences, of AI systems can be positive, negative, or both, and can result in opportunities or threats (Source 3, page 4).",
+    "expected_pages": [
+      4
+    ],
+    "retrieved_pages": [
+      4,
+      5,
+      7
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.582,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "probability",
+      "magnitude"
+    ],
+    "faithfulness": 0.95,
+    "answer_relevancy": 0.95,
+    "judge_reasoning": "The answer accurately reflects the framework's definition of risk from the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer accurately restates the reference definition of risk and adds consistent details without contradiction.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q4",
+    "type": "factual",
+    "question": "What does risk tolerance mean in the AI RMF?",
+    "reference_answer": "Risk tolerance refers to an organization's or AI actor's readiness to bear risk in order to achieve its objectives.",
+    "answer": "Based on the document, risk tolerance refers to the organization\u2019s or AI actor\u2019s readiness to bear the risk in order to achieve its objectives (page 7). It is described as highly contextual and application and use-case specific, and it can be influenced by legal or regulatory requirements, as well as policies and norms established by AI system owners, organizations, industries, communities, or policy makers (page 7). Additionally, risk tolerances are likely to change over time as AI systems, policies, and norms evolve, and they may vary between organizations due to their particular priorities and resource considerations (page 7).",
+    "expected_pages": [
+      7
+    ],
+    "retrieved_pages": [
+      4,
+      7,
+      18
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.75,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "readiness",
+      "bear"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately restates the definition of risk tolerance from the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer restates the reference definition accurately and adds consistent contextual details without contradicting the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q5",
+    "type": "factual",
+    "question": "What characteristics make an AI system trustworthy according to NIST?",
+    "reference_answer": "Trustworthy AI characteristics include validity and reliability, safety, security and resilience, accountability and transparency, explainability and interpretability, privacy enhancement, and fairness with harmful bias managed.",
+    "answer": "1. Valid and Reliable: This is a necessary condition of trustworthiness and serves as the base for other trustworthiness characteristics (page 10).\n2. Safe: Explicitly listed as a characteristic of trustworthy AI systems (page 10).\n3. Secure and Resilient: Listed as a characteristic of trustworthy AI systems (page 10).\n4. Accountable and Transparent: This relates to processes and activities both internal to the AI system and its external setting, and is shown as a vertical box because it relates to all other characteristics (page 10).\n5. Explainable and Interpretable: Explicitly listed as a characteristic of trustworthy AI systems (page 10).\n6. Privacy-Enhanced: Explicitly listed as a characteristic of trustworthy AI systems (page 10).\n7. Fair with Harmful Bias Managed: Explicitly listed as a characteristic of trustworthy AI systems (page 10).",
+    "expected_pages": [
+      3,
+      10
+    ],
+    "retrieved_pages": [
+      1,
+      2,
+      10,
+      12
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.756,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "valid",
+      "reliable",
+      "safe",
+      "resilient",
+      "accountable",
+      "transparent",
+      "explainable",
+      "interpretable",
+      "privacy",
+      "fair"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer lists exactly the characteristics described in the context and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer lists all the same characteristics as the reference without contradiction",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q6",
+    "type": "factual",
+    "question": "What is the difference between explainability and interpretability?",
+    "reference_answer": "Explainability refers to a representation of the mechanisms underlying AI system operation, whereas interpretability refers to the meaning of AI system output in the context of its designed functional purposes.",
+    "answer": "Based on the document, the differences between explainability and interpretability are:\n\n1. Explainability: This refers to a representation of the mechanisms underlying how an AI system operates and can answer the question of \"how\" a decision was made (page 14).\n2. Interpretability: This refers to the meaning of the AI system's output in the context of its designed functional purposes and can answer the question of \"why\" a decision was made along with its meaning or context to the user (page 15).",
+    "expected_pages": [
+      14
+    ],
+    "retrieved_pages": [
+      10,
+      13,
+      14,
+      15
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.682,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "mechanisms",
+      "meaning",
+      "output"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately reflects the context's definitions and directly addresses the question about their differences",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer accurately restates both key points from the reference without contradiction",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q7",
+    "type": "factual",
+    "question": "What are the three major categories of AI bias identified by NIST?",
+    "reference_answer": "The three categories are systemic bias, computational and statistical bias, and human-cognitive bias.",
+    "answer": "Based on the document, NIST identifies three major categories of AI bias:\n\n1. Systemic: This bias can be present in AI datasets, the organizational norms, practices, and processes across the AI lifecycle, and the broader society that uses AI systems.\n2. Computational and statistical: These biases can be present in AI datasets and algorithmic processes, and often stem from systematic errors due to non-representative samples.\n3. Human-cognitive: These biases relate to how an individual or group perceives AI system information to make a decision or fill in missing information, or how humans think about purposes and functions of an AI system.",
+    "expected_pages": [
+      16
+    ],
+    "retrieved_pages": [
+      1,
+      3,
+      16,
+      17
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.783,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "systemic",
+      "computational",
+      "human-cognitive"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly lists the three bias categories from the context and directly answers the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer lists the same three categories as the reference without contradiction",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q8",
+    "type": "factual",
+    "question": "What is the purpose of the MAP function?",
+    "reference_answer": "The MAP function establishes the context to frame risks related to an AI system.",
+    "answer": "Based on the provided document, the purpose of the MAP function includes:\n\n1. Context Establishment: It establishes the context to frame risks related to an AI system (Source 1, page 22).\n2. Risk Management Integration: It serves as the starting point for most users after instituting governance outcomes, continuing into the MEASURE or MANAGE functions within an iterative process (Source 3, page 19; Source 2, page 19).\n3. Diverse Perspectives: It is one of the four core functions carried out in a way that reflects diverse and multidisciplinary perspectives, potentially including views from outside the organization (Source 4, page 18).\n4. Organizational Alignment: It works with the GOVERN function to ensure that the mapping of AI risks is informed by organizational principles, policies, and strategic priorities, including workforce diversity, equity, inclusion, and accessibility processes (Source 2, page 19; Source 5, page 21).",
+    "expected_pages": [
+      22
+    ],
+    "retrieved_pages": [
+      18,
+      19,
+      21,
+      22
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.479,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "establishes the context",
+      "frame risks"
+    ],
+    "faithfulness": 0.6,
+    "answer_relevancy": 0.9,
+    "judge_reasoning": "The answer mostly reflects the context but adds unsupported claims about organizational alignment and diversity that are not tied to MAP in the text.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer includes the key fact that MAP establishes context to frame AI risks and adds compatible details without contradiction.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q9",
+    "type": "multi-part",
+    "question": "Why can AI risks be difficult to measure, and what should organizations do to address emerging risks?",
+    "reference_answer": "AI risks may be difficult to measure when failures are not well-defined or adequately understood. Organizations should identify and track emerging risks and consider techniques for measuring them.",
+    "answer": "Based on the provided document, AI risks can be difficult to measure for the following reasons:\n\n1. Undefined or poorly understood risks: Risks that are not well-defined or adequately understood are hard to measure quantitatively or qualitatively (Page 5).\n2. Impact of third-party components: The use of third-party data, software, or hardware can complicate measurement, and the lack of transparency from the developing organization regarding their risk metrics can further hinder assessment (Page 5).\n3. Misalignment of methodologies: The risk metrics or methodologies used to develop an AI system may not align with those used by the organization deploying or operating it (Page 5).\n4. Unforeseeable negative impacts: It can be challenging to assess negative impacts and the degree of harms, particularly when humans assume AI systems work well in all settings or perceive them as more objective than they are (Page 4).\n\nTo address emerging risks, organizations should do the following:\n\n1. Identify and track emergent risks: Efforts should focus on identifying these risks and considering techniques for measuring them (Page 5).\n2. Implement proper controls: Organizations must manage risk to ensure AI systems mitigate and manage inequitable outcomes rather than amplifying or exacerbating them (Page 1).\n3. Practice responsible AI: Teams should critically examine the context and potential unexpected negative and positive impacts to drive responsible use and enhance trustworthiness (Page 1).",
+    "expected_pages": [
+      5,
+      6
+    ],
+    "retrieved_pages": [
+      1,
+      4,
+      5
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.793,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "not well-defined",
+      "emergent",
+      "measur"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer cites only points present in the context and directly addresses both parts of the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer includes the reference's key facts and adds compatible details without contradicting them",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q10",
+    "type": "multi-part",
+    "question": "How should organizations prioritize AI risks, and what should they do when the risks become unacceptable?",
+    "reference_answer": "Organizations should prioritize policies and resources according to the assessed risk level and potential impact of an AI system. If risks are unacceptable, development and deployment should cease safely until the risks can be sufficiently managed.",
+    "answer": "Based on the provided document, organizations should prioritize AI risks in the following manner:\n\n1.  Risk-Based Allocation: Policies and resources should be prioritized based on the assessed risk level and the potential impact of the AI system.\n2.  Contextual Factors: Risk prioritization may differ depending on whether the system directly interacts with humans. Higher initial prioritization is required for systems trained on sensitive data (such as personally identifiable information) or those with direct or indirect impacts on humans.\n3.  Lower Prioritization: Systems designed to interact only with computational systems and trained on non-sensitive datasets may call for lower initial prioritization, though regular assessment remains important due to potential downstream implications.\n4.  Urgent Action: Risks determined to be highest for a specific context of use require the most urgent prioritization and the most thorough risk management process.\n\nWhen risks become unacceptable, organizations should take the following actions:\n\n1.  Cease Operations: If an AI system presents unacceptable negative risk levels\u2014such as imminent significant negative impacts, severe harms actually occurring, or the presence of catastrophic risks\u2014development and deployment must cease in a safe manner.\n2.  Manage Risks First: The cessation of activities should continue until the risks can be sufficiently managed.\n\n(Page 4, Page 7, Page 8)",
+    "expected_pages": [
+      7,
+      8
+    ],
+    "retrieved_pages": [
+      1,
+      7,
+      8
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.801,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "prioritized",
+      "cease",
+      "unacceptable"
+    ],
+    "faithfulness": 0.95,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer accurately reflects the context's guidance on prioritizing AI risks and actions when risks are unacceptable, staying on topic.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer includes the key points about risk-based prioritization and stopping work until risks are managed, matching the reference without contradiction.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q11",
+    "type": "multi-part",
+    "question": "How do governance and diverse team participation contribute to AI risk management?",
+    "reference_answer": "Governance establishes organizational policies, responsibilities, and practices for managing AI risks. Diverse, multidisciplinary teams bring different experiences and expertise, helping identify problems and emerging risks throughout the AI lifecycle.",
+    "answer": "Based on the provided document, governance and diverse team participation contribute to AI risk management in the following ways:\n\n1. Governance Infrastructure: The GOVERN function is a cross-cutting requirement that enables other risk management functions by establishing overarching policies, compliance structures, and evaluation processes (Page 20).\n2. Organizational Culture and Accountability: Strong governance shapes organizational culture, risk tolerance, and accountability. It ensures that senior leadership sets the tone for risk management and that documentation enhances transparency and human review processes (Page 20).\n3. Continuous Adaptation: Governance requires ongoing execution as knowledge, cultures, and expectations evolve, ensuring that policies, processes, and practices remain transparent and effectively implemented throughout the AI system's lifespan (Pages 20, 21).\n4. Leadership Responsibility: Executive leadership is responsible for decisions regarding risks during AI system development and deployment, ensuring that risk tolerance levels determine the extent of risk management activities (Page 21).\n5. Diverse Decision-Making: Mapping, measuring, and managing AI risks requires input from teams with diverse demographics, disciplines, experience, and expertise to ensure a broad range of perspectives is considered (Page 21).\n6. Equity and Inclusion: Prioritizing workforce diversity, equity, inclusion, and accessibility processes ensures that risk management accounts for disparate impacts on individuals and communities, helping to mitigate inequitable outcomes (Pages 2, 21).\n7. Cultural Mindset: Organizational policies foster a culture of critical thinking and a safety-first mindset, which helps minimize potential negative impacts by aligning AI practices with intended values and social responsibility (Pages 1, 21).\n8. Role Definition: Policies clarify roles and responsibilities for human-AI configurations and oversight, ensuring that personnel and partners are trained to perform duties consistent with these responsibilities (Page 21).",
+    "expected_pages": [
+      9,
+      18,
+      19,
+      20,
+      21
+    ],
+    "retrieved_pages": [
+      1,
+      9,
+      20,
+      21
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.709,
+    "keyword_coverage": 0.67,
+    "keywords_found": [
+      "diverse",
+      "governance"
+    ],
+    "faithfulness": 0.95,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer summarizes governance and diverse team roles that are described in the context, staying true to the provided information and directly addressing the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer captures both governance establishing policies and diverse team input identifying risks, matching the reference without contradiction.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q12",
+    "type": "paraphrased",
+    "question": "Can an AI system be considered trustworthy just because it is accurate? Why or why not?",
+    "reference_answer": "No. Trustworthiness requires balancing multiple characteristics, and addressing these characteristics individually does not guarantee that an AI system is trustworthy.",
+    "answer": "No, an AI system cannot be considered trustworthy just because it is accurate. According to the document, trustworthiness requires balancing a multiplicity of criteria, and characteristics such as accuracy and security do not automatically ensure overall trustworthiness. Specifically, the text notes that \"accurate but opaque and uninterpretable systems, and inaccurate but secure, privacy-enhanced, and transparent systems are all undesirable.\" This indicates that a comprehensive approach to risk management calls for balancing tradeoffs among all trustworthiness characteristics, as addressing them individually will not ensure the AI system is trustworthy.\n\n1. Valid & Reliable: This is a necessary condition shown as the base for other characteristics, but it is not sufficient on its own.\n2. Safe: The system must be safe in its context of use.\n3. Secure & Resilient: The system must withstand threats and remain operational.\n4. Accountable & Transparent: This relates to processes internal and external to the system and connects to all other characteristics.\n5. Explainable & Interpretable: The system's decisions must be understandable.\n6. Privacy-Enhanced: The system must protect user data.\n7. Fair with Harmful Bias Managed: The system must manage bias to ensure fairness.",
+    "expected_pages": [
+      10,
+      11
+    ],
+    "retrieved_pages": [
+      2,
+      10,
+      11
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.647,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "individually",
+      "tradeoffs"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly reflects the context and directly addresses why accuracy alone does not make AI trustworthy.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states that accuracy alone does not make an AI trustworthy and explains the need for multiple characteristics, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q13",
+    "type": "paraphrased",
+    "question": "Why might an AI system perform well during laboratory testing but create problems after deployment?",
+    "reference_answer": "Measurements in a laboratory or controlled environment may differ from risks that emerge in operational, real-world settings. Some risks may also be latent early on and increase as AI systems adapt and evolve.",
+    "answer": "1. Differences between controlled and real-world settings: Measurements taken in a laboratory or controlled environment may differ from the risks that actually emerge in operational, real-world settings (Page 6).\n2. Data changes over time: AI systems may be trained on data that can change over time and unexpectedly, affecting system functionality (Page 1).\n3. Unanticipated conditions and environments: Robustness requires the system to function in uses not initially anticipated, and validity is often only fully confirmed through ongoing monitoring as the system performs in a broader set of conditions (Pages 11-12).\n4. Complexity and inscrutability: The complexity of AI systems and their deployment contexts makes it difficult to detect failures, while inscrutability resulting from opaque nature or lack of explainability can further complicate risk measurement (Pages 1 and 6).\n5. Socio-technical dynamics: Risks can emerge from the interplay of technical aspects and societal factors, such as human behavior, interactions with other systems, and the specific social context where the system is deployed (Page 1).",
+    "expected_pages": [
+      6
+    ],
+    "retrieved_pages": [
+      1,
+      6,
+      11,
+      12
+    ],
+    "page_hit": 1.0,
+    "abstained": null,
+    "top_retrieval_score": 0.512,
+    "keyword_coverage": 1.0,
+    "keywords_found": [
+      "laboratory",
+      "controlled environment",
+      "real-world"
+    ],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer's points are all supported by the provided context and directly explain the lab vs deployment discrepancy.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer includes the reference's main point about lab vs real-world differences and adds compatible extra details without contradicting the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q14",
+    "type": "unanswerable",
+    "question": "What exact monetary fine does NIST prescribe for organizations that fail to follow the AI RMF?",
+    "reference_answer": "The document does not specify a monetary fine for failing to follow the AI RMF. The framework is described as voluntary.",
+    "answer": "The document does not contain that information.",
+    "expected_pages": [],
+    "retrieved_pages": [
+      3,
+      7,
+      9,
+      17
+    ],
+    "page_hit": null,
+    "abstained": true,
+    "top_retrieval_score": 0.522,
+    "keyword_coverage": null,
+    "keywords_found": [],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly states that the context provides no monetary fine information, which is accurate and directly addresses the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states that the document does not provide a monetary fine, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  },
+  {
+    "id": "Q15",
+    "type": "unanswerable",
+    "question": "What is the mandatory deadline for every organization to complete implementation of the AI RMF?",
+    "reference_answer": "I couldn't find a mandatory implementation deadline in the document. The AI RMF is voluntary, and organizations can apply its approaches according to their needs and capabilities.",
+    "answer": "The document does not contain information about a mandatory deadline for organizations to complete implementation of the AI RMF. On the contrary, Source 1 on page 2 explicitly states that the Framework is intended to be voluntary, offering flexibility to organizations of all sizes and in all sectors.",
+    "expected_pages": [],
+    "retrieved_pages": [
+      2,
+      3,
+      17,
+      18
+    ],
+    "page_hit": null,
+    "abstained": true,
+    "top_retrieval_score": 0.618,
+    "keyword_coverage": null,
+    "keywords_found": [],
+    "faithfulness": 1.0,
+    "answer_relevancy": 1.0,
+    "judge_reasoning": "The answer correctly states that the context provides no deadline and notes the framework is voluntary, directly addressing the question.",
+    "correctness": 1.0,
+    "correctness_reasoning": "The answer correctly states that no mandatory deadline is provided, matching the reference.",
+    "judge_model": "openai/gpt-oss-120b"
+  }
+]
